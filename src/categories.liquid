@@ -1,0 +1,19 @@
+---
+layout: base.html
+pagination:
+  data: collections.categories
+  size: 1
+  alias: category
+permalink: "/categories/{{ category | slugify }}/index.html"
+---
+
+<h2>Category: {{ category }}</h2>
+
+<ul class="list-disc pl-10">
+{% assign posts = collections.post | filterByCategory: category %}
+{% for post in posts reversed %}
+  <li class="underline">
+    <a class="underline" href="{{ post.url }}">[{{ post.date | formatDateMed }}] {{ post.data.title }}</a>
+  </li>
+{% endfor %}
+</ul>

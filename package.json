@@ -1,0 +1,17 @@
+{
+  "name": "journal",
+  "version": "1.0.0",
+  "description": "My devblog site.",
+  "license": "ISC",
+  "author": "timothyckl",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^3.1.2",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^5.0.2",
+    "luxon": "^3.7.1"
+  }
+}

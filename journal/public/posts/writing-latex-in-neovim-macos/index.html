@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr">
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+  <meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>Writing LaTeX in Neovim on MacOS | Journal</title>
+<link rel="apple-touch-icon" sizes="57x57" href="/favicon_io/apple-icon-57x57.png">
+<link rel="apple-touch-icon" sizes="60x60" href="/favicon_io/apple-icon-60x60.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/favicon_io/apple-icon-72x72.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/favicon_io/apple-icon-76x76.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/favicon_io/apple-icon-114x114.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/favicon_io/apple-icon-120x120.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/favicon_io/apple-icon-144x144.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/favicon_io/apple-icon-152x152.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/favicon_io/apple-icon-180x180.png">
+<link rel="icon" type="image/png" sizes="192x192"  href="/favicon_io/android-icon-192x192.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="96x96" href="/favicon_io/favicon-96x96.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon_io/favicon-16x16.png">
+<link rel="manifest" href="/favicon_io/manifest.json">
+<meta name="msapplication-TileColor" content="#ffffff">
+<meta name="msapplication-TileImage" content="/favicon_io/ms-icon-144x144.png">
+<meta name="theme-color" content="#ffffff">
+
+
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="stylesheet" href="/css/custom.css">
+
+
+      <script src="/js/main.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+
+
+</head>
+<body>
+  <header>
+    <header>
+  <nav class="path-nav">
+    <ol>
+      
+  
+    
+  
+    
+  
+  <li>
+    /
+    <a href="/">Journal</a>
+    /
+  </li>
+
+  
+  <li>
+    
+    <a href="/posts/">Posts</a>
+    /
+  </li>
+
+  
+  <li class="current">
+    
+    <a href="/posts/writing-latex-in-neovim-macos/">Writing LaTeX in Neovim on MacOS</a>
+    
+  </li>
+
+    </ol>
+  </nav>
+</header>
+
+
+
+  </header>
+  <main>
+    
+  <h1>Writing LaTeX in Neovim on MacOS</h1>
+  
+
+
+  
+  
+  
+  
+    <nav class="toc">
+      <strong>Table of contents</strong>
+      <div class="toc-content">
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#overview">Overview</a></li>
+    <li><a href="#prerequisites">Prerequisites</a></li>
+    <li><a href="#folder-structure">Folder Structure</a></li>
+    <li><a href="#steps">Steps</a>
+      <ul>
+        <li><a href="#install-vimtex">Install VimTeX</a></li>
+        <li><a href="#install-tectonic">Install Tectonic</a></li>
+        <li><a href="#install-skim">Install Skim</a></li>
+      </ul>
+    </li>
+    <li><a href="#result">Result</a></li>
+    <li><a href="#summary">Summary</a></li>
+    <li><a href="#keybinds-where-to-put-this-bruh">Keybinds (where to put this bruh)</a></li>
+  </ul>
+</nav>
+      </div>
+    </nav>
+  
+
+  <p>As a university student in the field of computer science, my workflow largely revolves around note-taking, programming, and writing math equations. I heavily rely on Neovim and its plugins as my primary development environment due to its versatility and efficiency.</p>
+<p>Currently, I write my math notes and tutorials on an iPad, but I would prefer documents that look more professional. After some googling I discovered LaTeX and it&rsquo;s superior formatting and ability to handle equations. However, one gap in my workflow was handing LaTeX documents directly within Neovim without switching to external software.</p>
+<p>There isn&rsquo;t much documentation about this topic online. So I&rsquo;ll be walking through the steps I took to enable LaTeX within Neovim and integrate document previewing. I hope this guide helps anyone facing the same challenges I did. :D</p>
+<h2 id="overview">Overview</h2>
+<p>First, the plugin I will be installing is <a href="https://github.com/lervag/vimtex">VimTeX</a>. It is a Vim/Neovim plugin that provides a comprehensive suite of tools for editing and compiling LaTeX documents. Then, we install <a href="https://github.com/tectonic-typesetting/tectonic?tab=readme-ov-file">Tectonic</a> which compile <code>.tex</code> files into <code>.pdf</code> documents. Lastly, I need a way to preview our PDF documents and <a href="https://skim-app.sourceforge.io/">Skim</a>  will be used for that.</p>
+<h2 id="prerequisites">Prerequisites</h2>
+<p>Before continuing, ensure the following requirements are met:</p>
+<ul>
+<li><strong>Homebrew</strong> installed</li>
+<li><strong>Neovim</strong> installed and set up
+<ul>
+<li>Requires version <strong>0.10 or later</strong></li>
+</ul>
+</li>
+<li><strong>Lazy.nvim</strong> plugin manager installed and configured</li>
+</ul>
+<h2 id="folder-structure">Folder Structure</h2>
+<p>This is what my <code>nvim</code> config folder structure looks like:</p>
+<pre tabindex="0"><code>.config/ 
+└── nvim/ 
+    ├── init.lua 
+    └── lua/ 
+        ├── settings.lua
+        └── plugins/
+            └── ...
+</code></pre><p>My actual configurations can be found on <a href="https://github.com/timothyckl/configs/tree/main">GitHub</a> for reference as well.</p>
+<h2 id="steps">Steps</h2>
+<h3 id="install-vimtex">Install VimTeX</h3>
+<p>In <code>.config/nvim/lua/plugins/</code>, create a <code>vimtex.lua</code> file that returns the following table:</p>
+<pre tabindex="0"><code>return {
+  &#34;lervag/vimtex&#34;,
+  lazy = false,     -- we don&#39;t want to lazy load VimTeX
+  -- tag = &#34;v2.15&#34;, -- uncomment to pin to a specific release
+  init = function()
+    -- VimTeX configuration goes here, e.g.
+    vim.g.vimtex_view_method = &#34;zathura&#34;
+  end
+}
+</code></pre><p><strong>Note</strong>: These are default settings from VimTeX&rsquo;s install guide. For a full list of configurations, visit their README&rsquo;s <a href="https://github.com/lervag/vimtex?tab=readme-ov-file#configuration">configuration</a> section.</p>
+<p>We’ll use Tectonic as the LaTeX engine and Skim as the PDF viewer. After installing them, we’ll update our Lua config so VimTeX uses these instead of the defaults.</p>
+<h3 id="install-tectonic">Install Tectonic</h3>
+<p>Tectonic is a modernised TeX/LaTeX engine. While it offers many other features, the scope of this guide only covers compilation of <code>.tex</code> to <code>.pdf</code> documents.</p>
+<p>Installation is as simple as a sngle brew install command:</p>
+<pre tabindex="0"><code>brew install tectonic
+</code></pre><p>Next, let&rsquo;s verify our installation by checking its version:</p>
+<pre tabindex="0"><code>tectonic --version
+</code></pre><h3 id="install-skim">Install Skim</h3>
+<p>I’m using Skim instead of macOS Preview while drafting because Preview jumps back to the first page on every LaTeX compile, whereas Skim keeps my place, which is ahuge time-saver on lengthy PDFs.</p>
+<ol start="3">
+<li>install skim
+<ul>
+<li>Under settings &gt; PDF Text Support
+<ul>
+<li>Type:
+<ul>
+<li>Command: nvim</li>
+<li>Arguments: &ndash;headless -c &ldquo;VimtexInverseSearch &amp;l &lsquo;%f&rsquo;&rdquo;</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h2 id="result">Result</h2>
+<h2 id="summary">Summary</h2>
+<h2 id="keybinds-where-to-put-this-bruh">Keybinds (where to put this bruh)</h2>
+
+  <time datetime="2025-10-13">2025-10-13&nbsp;</time>
+
+
+  
+    <div class="terminal-nav">
+      <div class="back-nav">
+        <a href="../" class="back-link">../</a>
+      </div>
+    </div>
+  
+
+  </main>
+  <footer>
+    <footer class="container mx-auto px-4 py-8">
+  <p>
+    &copy; 2025
+    timothyckl.
+    All rights reserved.
+  </p>
+
+  
+  
+</footer>
+
+  </footer>
+</body>
+</html>

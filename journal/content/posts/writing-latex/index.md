@@ -88,12 +88,6 @@ We can also install this with `brew install`:
 brew install skim 
 ```
 
-Next, let's verify our installation by checking its version:
-
-```
-tectonic --version
-```
-
 Next, we'll need to configure extra settings by launching Skim, then going to `Settings > Sync > PDF Text Support`, enter the following:
 
 **Command**: `nvim` \

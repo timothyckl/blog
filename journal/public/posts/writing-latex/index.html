@@ -3,7 +3,7 @@
 <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8">
 <meta name="viewport" content="width=device-width">
-<title>Writing LaTeX in Neovim on MacOS | Journal</title>
+<title>Writing LaTeX in Neovim | Journal</title>
 <link rel="apple-touch-icon" sizes="57x57" href="/favicon_io/apple-icon-57x57.png">
 <link rel="apple-touch-icon" sizes="60x60" href="/favicon_io/apple-icon-60x60.png">
 <link rel="apple-touch-icon" sizes="72x72" href="/favicon_io/apple-icon-72x72.png">
@@ -59,7 +59,7 @@
   
   <li class="current">
     
-    <a href="/posts/writing-latex/">Writing LaTeX in Neovim on MacOS</a>
+    <a href="/posts/writing-latex/">Writing LaTeX in Neovim</a>
     
   </li>
 
@@ -72,7 +72,7 @@
   </header>
   <main>
     
-  <h1>Writing LaTeX in Neovim on MacOS</h1>
+  <h1>Writing LaTeX in Neovim</h1>
   
 
 
@@ -156,7 +156,9 @@
 <p>I’m using Skim instead of macOS Preview while drafting because Preview jumps back to the first page on every LaTeX compile, whereas Skim keeps my place, which is ahuge time-saver on lengthy PDFs.</p>
 <p>We can also install this with <code>brew install</code>:</p>
 <pre tabindex="0"><code>brew install skim 
-</code></pre><p>Next, we&rsquo;ll need to configure extra settings by launching Skim, then going to Settings &gt; Sync &gt; PDF Text Support, enter the following:</p>
+</code></pre><p>Next, let&rsquo;s verify our installation by checking its version:</p>
+<pre tabindex="0"><code>tectonic --version
+</code></pre><p>Next, we&rsquo;ll need to configure extra settings by launching Skim, then going to <code>Settings &gt; Sync &gt; PDF Text Support</code>, enter the following:</p>
 <p><strong>Command</strong>: <code>nvim</code> <br>
 <strong>Arguments</strong>: <code>--headless -c &quot;VimtexInverseSearch &amp;l '%f'&quot;</code></p>
 <h3 id="putting-everything-together">Putting Everything Together</h3>
@@ -188,10 +190,10 @@
 <li><code>\le</code> — Errors (jump to first)</li>
 </ul>
 <h2 id="conclusion">Conclusion</h2>
-<p>With VimTeX, Tectonic, and Skim working together, I can draft, compile, and preview polished LaTeX documents without ever leaving Neovim—and that’s been a huge upgrade from handwriting notes on the iPad. This setup is fast, reproducible, and scales nicely from quick homework write-ups to longer reports.</p>
-<p>And if you hit any snags, :help vimtex is excellent, plus the VimTeX README has answers to most questions. Additionally, my favourite resource for document templates in LaTeX is Overleaf’s <a href="https://www.overleaf.com/latex/templates">template gallery</a>. Happy TeX’ing!</p>
+<p>With VimTeX, Tectonic, and Skim working together, I can draft, compile, and preview polished LaTeX documents without ever leaving Neovim and that’s been a huge upgrade from handwriting notes on the iPad. This setup is fast, reproducible, and scales nicely from quick homework write-ups to longer reports.</p>
+<p>If you face any errors, <code>:help vimtex</code> is excellent, plus the VimTeX README has answers to most questions. Additionally, if you&rsquo;re not sure how to style your document, my favourite resource for document templates in LaTeX is Overleaf’s <a href="https://www.overleaf.com/latex/templates">template gallery</a>. Happy TeX’ing!</p>
 
-  <time datetime="2025-10-13">2025-10-13&nbsp;</time>
+  <time datetime="2025-09-05">2025-09-05&nbsp;</time>
 
 
   

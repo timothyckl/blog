@@ -1,6 +1,6 @@
 +++
-date = '2025-10-13T13:15:40+08:00'
-title = 'Writing LaTeX in Neovim on MacOS'
+date = '2025-09-05T13:15:40+08:00'
+title = 'Writing LaTeX in Neovim'
 +++
 
 ## Background
@@ -88,7 +88,13 @@ We can also install this with `brew install`:
 brew install skim 
 ```
 
-Next, we'll need to configure extra settings by launching Skim, then going to Settings > Sync > PDF Text Support, enter the following:
+Next, let's verify our installation by checking its version:
+
+```
+tectonic --version
+```
+
+Next, we'll need to configure extra settings by launching Skim, then going to `Settings > Sync > PDF Text Support`, enter the following:
 
 **Command**: `nvim` \
 **Arguments**: `--headless -c "VimtexInverseSearch &l '%f'"`
@@ -132,6 +138,6 @@ My go-to VimTeX keybinds:
 
 ## Conclusion 
 
-With VimTeX, Tectonic, and Skim working together, I can draft, compile, and preview polished LaTeX documents without ever leaving Neovim—and that’s been a huge upgrade from handwriting notes on the iPad. This setup is fast, reproducible, and scales nicely from quick homework write-ups to longer reports.
+With VimTeX, Tectonic, and Skim working together, I can draft, compile, and preview polished LaTeX documents without ever leaving Neovim and that’s been a huge upgrade from handwriting notes on the iPad. This setup is fast, reproducible, and scales nicely from quick homework write-ups to longer reports.
 
-And if you hit any snags, :help vimtex is excellent, plus the VimTeX README has answers to most questions. Additionally, my favourite resource for document templates in LaTeX is Overleaf’s [template gallery](https://www.overleaf.com/latex/templates). Happy TeX’ing!
+If you face any errors, `:help vimtex` is excellent, plus the VimTeX README has answers to most questions. Additionally, if you're not sure how to style your document, my favourite resource for document templates in LaTeX is Overleaf’s [template gallery](https://www.overleaf.com/latex/templates). Happy TeX’ing!

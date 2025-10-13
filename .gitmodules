@@ -1,0 +1,6 @@
+[submodule "journal/themes/themes/shibui"]
+	path = journal/themes/themes/shibui
+	url = https://github.com/ntk148v/shibui.git
+[submodule "journal/themes/shibui"]
+	path = journal/themes/shibui
+	url = https://github.com/ntk148v/shibui.git

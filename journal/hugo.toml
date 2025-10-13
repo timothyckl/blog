@@ -1,0 +1,22 @@
+baseURL = 'https://timothyckl.com/'
+languageCode = 'en-us'
+title = 'Journal'
+theme = "shibui"
+
+[params]
+  author = "timothyckl"
+  email = "timothy.ckl@outlook.com"
+  mainSections = ["posts"]
+[params.footer]
+    note = "All rights reserved."
+    showTheme = false   # hide the “theme name” line
+
+[menu]
+  [[menu.main]]
+    name = "Posts"
+    url = "/posts/"
+    weight = 1
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 2

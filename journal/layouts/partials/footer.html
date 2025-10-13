@@ -1,0 +1,14 @@
+<footer class="container mx-auto px-4 py-8">
+  <p>
+    &copy; {{ now.Format "2006" }}
+    {{ with site.Params.author }}{{ . }}{{ else }}{{ site.Title }}{{ end }}.
+    {{ with site.Params.footer.note }}{{ . }}{{ end }}
+  </p>
+
+  {{/* Optional: remove theme credit by not rendering it at all */}}
+  {{ if site.Params.footer.showTheme }}
+    <p class="text-sm text-muted">
+      Built with <a href="https://gohugo.io/">Hugo</a> &amp; Shibui theme.
+    </p>
+  {{ end }}
+</footer>

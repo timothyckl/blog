@@ -16,7 +16,3 @@ theme = "shibui"
     name = "Posts"
     url = "/posts/"
     weight = 1
-  [[menu.main]]
-    name = "About"
-    url = "/about/"
-    weight = 2

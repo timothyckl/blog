@@ -18,13 +18,10 @@ hugo server -D
 
 ```bash
 .
-├── journal/
-│   └── content/        # posts & pages (e.g. content/posts/)
-│        ├── content/        # posts & pages (e.g. content/posts/)
-│        ├── themes/         # theme (git submodule)
-│        ├── hugo.toml       # site config
-│        └ ...
-└── README.md       
+├── content/        # posts & pages
+├── themes/         # theme submodules
+├── hugo.toml       # site config
+└── README.md
 ```
 
 ## Writing

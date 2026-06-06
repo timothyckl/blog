@@ -1,6 +1,6 @@
 # tim's thoughts
 
-Developer blog built with [Hugo](https://gohugo.io/) and [shibui](https://github.com/ntk148v/shibui) theme.
+Developer blog built with [Hugo](https://gohugo.io/) and [risotto](https://github.com/joeroe/risotto) theme.
 
 ## Quick Start
 

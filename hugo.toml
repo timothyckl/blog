@@ -1,15 +1,36 @@
-baseURL = 'https://timothyckl.com/'
+baseURL = '/'
 languageCode = 'en-us'
-title = 'Journal'
-theme = "shibui"
+title = "tim's thoughts"
+theme = "risotto"
+author = "timothyckl"
+copyright = "© timothyckl. All rights reserved."
 
 [params]
-  author = "timothyckl"
-  email = "timothy.ckl@outlook.com"
+  noindex = false
   mainSections = ["posts"]
-[params.footer]
-    note = "All rights reserved."
-    showTheme = false   # hide the “theme name” line
+
+[params.theme]
+  palette = "gruvbox-dark"
+
+[params.about]
+  title = "tim's thoughts"
+  description = "Notes, tutorials, experiments, and thoughts on AI, developer tools, and workflows."
+  logo = "~/"
+
+[[params.socialLinks]]
+  icon = "fa-brands fa-github"
+  title = "GitHub"
+  url = "https://github.com/timothyckl"
+
+[[params.socialLinks]]
+  icon = "fa-brands fa-linkedin"
+  title = "LinkedIn"
+  url = "https://www.linkedin.com/in/timckl/"
+
+[[params.socialLinks]]
+  icon = "fa-solid fa-envelope"
+  title = "Email"
+  url = "mailto:timothy.ckl@outlook.com"
 
 [menu]
   [[menu.main]]

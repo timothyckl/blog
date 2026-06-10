@@ -15,7 +15,7 @@ This series is for developers with some programming and machine learning experie
 
 You don't need prior experience training LLMs, but familiarity with vectors, matrices, matrix multiplication, dot products, and basic probability will help. 
 
-## 1. Why build from scratch?
+## Why build from scratch?
 
 LLMs can feel enigmatic because most explanations start from finished systems and "just work". However, in this series, I want to go the other way and start with a small and understandable model, then build up from there one step at a time.
 
@@ -27,7 +27,7 @@ Once we have a working baseline, we can use it to ask more interesting questions
 - which inference optimisations matter?
 - what can we lean by looking inside the model?
 
-## 2. Why the GPT-2 architecture?
+## Why the GPT-2 architecture?
 
 GPT-2 is a useful starting point because its simple enough to build, but still contains the core ideas behind modern decoder-only LMs.
 
@@ -43,6 +43,6 @@ It also gives us a clean baseline for learning the main pieces such as:
 
 Newer models use many improvements over GPT-2, but starting with this architecture gives us something understandable to compare against. Once we have built our model, we can modify it and see what changes.
 
-## 4. Next up
+## Next up
 
 In the next post, I'll define the set up steps for this project which includes loading the FineWeb-Edu dataset, tokenising the samples, and converting the tokenised text into fixed-length sequences that our model can train on.

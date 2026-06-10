@@ -2,6 +2,7 @@
 date = '2026-06-07T10:53:28+08:00'
 draft = false
 title = 'Building a Tiny GPT-2 From Scratch'
+toc = true
 +++
 
 In this series, I'll build a small GPT-2-style language model from scratch, train it on a subset of the [HuggingFaceFW/fineweb-edu](https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu) dataset, and use it as a baseline for experiments in training, inference optimisation, architecture changes, and mechanistic interpretability.

@@ -1,6 +1,7 @@
 +++
 date = '2025-09-05T13:15:40+08:00'
 title = 'Writing LaTeX in Neovim'
+toc = true
 +++
 
 ## Background

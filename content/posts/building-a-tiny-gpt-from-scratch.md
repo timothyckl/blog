@@ -1,6 +1,6 @@
 +++
 date = '2026-06-07T10:53:28+08:00'
-draft = true
+draft = false
 title = 'Building a Tiny GPT-2 From Scratch'
 +++
 

@@ -99,8 +99,8 @@
   font-weight: 400;
   line-height: 1.6;
   color: var(--oc-code-fg);
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100% !important;
+  text-size-adjust: 100% !important;
 }
 
 .content-body pre code {
@@ -318,6 +318,8 @@
   line-height: 1.6;
   margin: 0;
   padding: 20px 22px;
+  -webkit-text-size-adjust: 100% !important;
+  text-size-adjust: 100% !important;
 }
 
 .content-body :not(pre) > code {
@@ -332,6 +334,8 @@
 .content-body .highlight code {
   color: var(--oc-code-fg) !important;
   background-color: var(--oc-code-bg) !important;
+  -webkit-text-size-adjust: 100% !important;
+  text-size-adjust: 100% !important;
 }
 
 .content-body .highlight [style*="color:#e6edf3"] {

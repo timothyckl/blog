@@ -6,6 +6,7 @@ author = "timothyckl"
 copyright = "© timothyckl. All rights reserved."
 
 [params]
+  homeLabel = "timothyckl"
   noindex = false
   mainSections = ["posts"]
   description = "Notes, tutorials, experiments, and thoughts on AI, developer tools, and workflows."

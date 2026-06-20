@@ -34,4 +34,4 @@
 <meta property="og:title" content="{{ if not .IsHome }}{{ .Title }} &ndash; {{ end }}{{ .Site.Title }}" />
 <meta property="og:url" content="{{ .Permalink }}" />
 {{ with $description }}<meta property="og:description" content="{{ . }}" />{{ end }}
-{{ with .Site.Language.Locale }}<meta property="og:locale" content="{{ replace . "-" "_" }}" />{{ end }}
+<meta property="og:locale" content="{{ replace .Site.LanguageCode "-" "_" }}" />

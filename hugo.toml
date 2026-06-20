@@ -1,21 +1,35 @@
 baseURL = '/'
 languageCode = 'en-us'
-title = "tim's thoughts"
-theme = "risotto"
+title = "timothyckl"
+theme = "opencode-hugo-theme"
 author = "timothyckl"
 copyright = "© timothyckl. All rights reserved."
 
 [params]
   noindex = false
   mainSections = ["posts"]
+  description = "Notes, tutorials, experiments, and thoughts on AI, developer tools, and workflows."
+
+[[params.experience]]
+  period = "Mar 2026 – May 2026"
+  role = "Research Assistant"
+  organisation = "Singapore Institute of Technology"
+
+[[params.experience]]
+  period = "Sep 2024 – Aug 2025"
+  role = "C4X Officer"
+  organisation = "Digital and Intelligence Service"
+
+[[params.experience]]
+  period = "Mar 2023 – Apr 2024"
+  role = "Machine Learning Engineer"
+  organisation = "A*STAR ARTC"
 
 [params.theme]
   palette = "gruvbox-dark"
 
-[params.about]
-  title = "tim's thoughts"
-  description = "Notes, tutorials, experiments, and thoughts on AI, developer tools, and workflows."
-  logo = "~/"
+[markup.highlight]
+  style = "github-dark"
 
 [[params.socialLinks]]
   icon = "fa-brands fa-github"
@@ -34,6 +48,11 @@ copyright = "© timothyckl. All rights reserved."
 
 [menu]
   [[menu.main]]
-    name = "Posts"
+    name = "/posts"
     url = "/posts/"
     weight = 1
+
+  [[menu.main]]
+    name = "/projects"
+    url = "/projects/"
+    weight = 2

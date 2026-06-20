@@ -1,0 +1,91 @@
+/* ==========================================================================
+   OpenCode Terminal Brutalist — Layout & Spacing
+   Based on opencode.ai DESIGN.md
+   ========================================================================== */
+
+/* -- Spacing scale ------------------------------------------------------- */
+
+:root {
+  --oc-space-xs:   8px;
+  --oc-space-sm:   16px;
+  --oc-space-md:   24px;
+  --oc-space-lg:   40px;
+  --oc-space-xl:   72px;
+  --oc-space-xxl:  120px;
+
+  --oc-gutter:     80px;
+  --oc-gutter-m:   20px;    /* mobile */
+  --oc-container:  1080px;
+}
+
+/* -- Radii --------------------------------------------------------------- */
+
+:root {
+  --oc-radius-none: 0px;
+  --oc-radius-sm:   4px;
+  --oc-radius-md:   6px;
+  --oc-radius-lg:   8px;
+}
+
+/* -- Reset & body -------------------------------------------------------- */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--oc-canvas);
+  color: var(--oc-ink);
+  font-family: var(--font-mono-brand);
+  font-size: 16px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* -- Page shell ---------------------------------------------------------- */
+
+.page-shell {
+  max-width: var(--oc-container);
+  margin: 0 auto;
+  border-inline: 1px solid var(--oc-rule);
+  background-color: var(--oc-canvas);
+  min-height: 0;
+  border-bottom: 1px solid var(--oc-rule);
+  display: flex;
+  flex-direction: column;
+}
+
+.page-gutter {
+  padding-inline: var(--oc-gutter);
+  flex: 1;
+}
+
+@media (max-width: 768px) {
+  .page-gutter {
+    padding-inline: var(--oc-gutter-m);
+  }
+}
+
+/* -- Section spacing ----------------------------------------------------- */
+
+.page-main {
+  flex: 1;
+  padding-block: var(--oc-space-lg);
+}
+
+/* -- Horizontal rules as section dividers -------------------------------- */
+
+hr {
+  border: none;
+  border-top: 1px solid var(--oc-rule);
+  margin: var(--oc-space-lg) 0;
+}
+
+.section-divider {
+  border: none;
+  border-top: 1px solid var(--oc-rule);
+  margin: var(--oc-space-xl) 0 var(--oc-space-md);
+}

@@ -1,0 +1,90 @@
+/* ==========================================================================
+   OpenCode Terminal Brutalist — Colour System
+   Based on opencode.ai DESIGN.md
+   ========================================================================== */
+
+:root {
+  /* OpenCode marketing palette — dark mode. */
+  --oc-canvas:         hsl(0, 9%, 7%);
+  --oc-surface:        hsl(0, 6%, 10%);
+  --oc-surface-raised: hsl(0, 6%, 15%);
+  --oc-surface-data:   hsl(0, 6%, 10%);
+
+  --oc-ink:          hsl(0, 4%, 71%);
+  --oc-ink-strong:   hsl(0, 15%, 94%);
+  --oc-ink-muted:    hsl(0, 4%, 71%);
+  --oc-ink-subtle:   hsl(0, 2%, 49%);
+  --oc-ink-dim:      hsl(0, 3%, 28%);
+
+  --oc-rule:         hsl(0, 3%, 28%);
+  --oc-rule-soft:    hsl(0, 4%, 23%);
+
+  --oc-button-light: hsl(0, 15%, 94%);
+  --oc-button-text:  hsl(0, 9%, 7%);
+  --oc-focus:        hsl(62, 100%, 90%);
+  --oc-link:         hsl(0, 15%, 94%);
+  --oc-selection-bg: hsl(62, 100%, 90%);
+  --oc-selection-fg: hsl(0, 9%, 7%);
+
+  /* OpenCode documentation syntax palette — dark mode. */
+  --oc-code-bg:      var(--oc-surface);
+  --oc-code-fg:      #E1E4E8;
+  --oc-code-border:  hsl(224, 7%, 36%);
+  --oc-code-selection:#3392FF44;
+  --oc-syntax-blue:  #79B8FF;
+  --oc-syntax-cyan:  #9ECBFF;
+  --oc-syntax-green: #85E89D;
+  --oc-syntax-grey:  #99A0A6;
+  --oc-syntax-orange:#FFAB70;
+  --oc-syntax-purple:#B392F0;
+  --oc-syntax-red:   #F97583;
+
+  /* --- Chart palette (reserved for data contexts) --- */
+  --oc-chart-orange: #FF8904;
+  --oc-chart-yellow: #FFB900;
+  --oc-chart-lime:   #9AE600;
+  --oc-chart-green:  #00BC7D;
+  --oc-chart-blue:   #51A2FF;
+  --oc-chart-cyan:   #00D3F2;
+  --oc-chart-teal:   #00D5BE;
+  --oc-chart-purple: #A684FF;
+  --oc-chart-violet: #7C86FF;
+  --oc-chart-pink:   #ED6AFF;
+}
+
+html[data-theme="light"] {
+  /* OpenCode marketing palette — light mode. */
+  --oc-canvas:         hsl(0, 20%, 99%);
+  --oc-surface:        hsl(0, 8%, 97%);
+  --oc-surface-raised: hsl(0, 8%, 94%);
+  --oc-surface-data:   hsl(0, 8%, 97%);
+
+  --oc-ink:          hsl(0, 1%, 39%);
+  --oc-ink-strong:   hsl(0, 5%, 12%);
+  --oc-ink-muted:    hsl(0, 1%, 39%);
+  --oc-ink-subtle:   hsl(0, 1%, 60%);
+  --oc-ink-dim:      hsl(30, 2%, 81%);
+
+  --oc-rule:         hsl(30, 2%, 81%);
+  --oc-rule-soft:    hsla(0, 100%, 3%, 0.12);
+
+  --oc-button-light: hsl(0, 5%, 12%);
+  --oc-button-text:  hsl(0, 20%, 99%);
+  --oc-focus:        hsl(62, 84%, 88%);
+  --oc-link:         hsl(0, 5%, 12%);
+  --oc-selection-bg: hsl(62, 84%, 88%);
+  --oc-selection-fg: hsl(0, 5%, 12%);
+
+  /* OpenCode documentation syntax palette — light mode. */
+  --oc-code-bg:      var(--oc-surface);
+  --oc-code-fg:      #24292E;
+  --oc-code-border:  hsl(0, 1%, 85%);
+  --oc-code-selection:#0366D625;
+  --oc-syntax-blue:  #005CC5;
+  --oc-syntax-cyan:  #032F62;
+  --oc-syntax-green: #1E7734;
+  --oc-syntax-grey:  #616972;
+  --oc-syntax-orange:#AE4B07;
+  --oc-syntax-purple:#6F42C1;
+  --oc-syntax-red:   #BF3441;
+}

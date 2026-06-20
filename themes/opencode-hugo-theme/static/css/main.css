@@ -1,0 +1,12 @@
+/* ==========================================================================
+   OpenCode Terminal Brutalist — Main Stylesheet
+   Based on opencode.ai DESIGN.md
+   ========================================================================== */
+
+@import "colours.css";
+@import "typography.css";
+@import "layout.css";
+@import "nav.css";
+@import "content.css";
+@import "components.css";
+@import "home.css";

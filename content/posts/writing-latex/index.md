@@ -28,7 +28,7 @@ Before continuing, ensure the following requirements are met:
 
 This is what my `nvim` config folder structure looks like:
 
-```
+```text {filename="~/.config/nvim"}
 .config/ 
 └── nvim/ 
     ├── init.lua 
@@ -46,7 +46,7 @@ My actual configurations can be found on [GitHub](https://github.com/timothyckl/
 
 In `.config/nvim/lua/plugins/`, create a `vimtex.lua` file that returns the following table:
 
-```
+```lua {filename="~/.config/nvim/lua/plugins/vimtex.lua"}
 return {
   "lervag/vimtex",
   lazy = false,     -- we don't want to lazy load VimTeX
@@ -68,13 +68,13 @@ Tectonic is a modernised TeX/LaTeX engine. While it offers many other features, 
 
 Installation is as simple as a single `brew install` command:
 
-```
+```bash
 brew install tectonic
 ```
 
 Next, let's verify our installation by checking its version:
 
-```
+```bash
 tectonic --version
 ```
 
@@ -85,7 +85,7 @@ I’m using Skim instead of macOS Preview while drafting because Preview jumps b
 
 We can also install this with `brew install`:
 
-```
+```bash
 brew install skim 
 ```
 
@@ -98,7 +98,7 @@ Next, we'll need to configure extra settings by launching Skim, then going to `S
 
 Going back to `vimtex.lua`, revise the previous configuration to mirror the following:
 
-```
+```lua {filename="~/.config/nvim/lua/plugins/vimtex.lua"}
 return {
     "lervag/vimtex",
 	lazy = false,

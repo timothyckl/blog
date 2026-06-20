@@ -1,0 +1,8 @@
+{{- $filename := .Attributes.filename | default .Attributes.title -}}
+<figure class="code-block{{ with $filename }} code-block--named{{ end }}">
+  {{- with $filename }}
+    <figcaption class="code-block__filename"><span>{{ . }}</span></figcaption>
+  {{- end }}
+  {{- $highlighted := transform.HighlightCodeBlock . -}}
+  {{ $highlighted.Wrapped }}
+</figure>

@@ -1,0 +1,269 @@
+/* ==========================================================================
+   OpenCode Terminal Brutalist — Navigation
+   Based on opencode.ai DESIGN.md
+   ========================================================================== */
+
+/* -- Desktop nav bar ----------------------------------------------------- */
+
+.page-nav {
+  position: relative;
+  height: 80px;
+  border-bottom: 1px solid var(--oc-rule);
+  display: flex;
+  align-items: center;
+  padding: 0 var(--oc-gutter);
+}
+
+.page-nav::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100vw;
+  border-top: 1px solid var(--oc-rule);
+  transform: translateX(-50%);
+}
+
+.page-nav nav {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: var(--oc-space-lg);
+}
+
+.nav-logo {
+  font-family: var(--font-mono-brand);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  color: var(--oc-ink-strong);
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.nav-logo:hover {
+  color: var(--oc-ink);
+}
+
+/* -- Nav links ----------------------------------------------------------- */
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  gap: var(--oc-space-md);
+  margin: 0;
+  padding: 0;
+  flex: 1;
+}
+
+.nav-links li {
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: var(--font-mono-brand);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--oc-ink-muted);
+  text-decoration: none;
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: var(--oc-ink-strong);
+  border-bottom-color: var(--oc-ink-strong);
+}
+
+/* -- Social links in nav ------------------------------------------------- */
+
+.nav-social {
+  display: flex;
+  align-items: center;
+  gap: var(--oc-space-sm);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.nav-social li {
+  list-style: none;
+}
+
+.nav-social a {
+  color: var(--oc-ink-subtle);
+  font-size: 16px;
+  text-decoration: none;
+  padding: 4px;
+}
+
+.nav-social a:hover {
+  color: var(--oc-ink);
+}
+
+/* -- Mobile toggle button ------------------------------------------------ */
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--oc-rule);
+  color: var(--oc-ink-muted);
+  font-family: var(--font-mono-brand);
+  font-size: 16px;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: var(--oc-radius-sm);
+  margin-left: auto;
+}
+
+.nav-toggle:hover {
+  color: var(--oc-ink-strong);
+  border-color: var(--oc-ink-subtle);
+}
+
+.nav-toggle:focus-visible {
+  outline: 2px solid var(--oc-focus);
+  outline-offset: 0;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  border: 1px solid var(--oc-rule);
+  border-radius: var(--oc-radius-sm);
+  background: transparent;
+  color: var(--oc-ink-subtle);
+  font: inherit;
+  line-height: 1;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--oc-ink-subtle);
+  background: var(--oc-surface-raised);
+  color: var(--oc-ink-strong);
+}
+
+/* -- Mobile overlay ------------------------------------------------------ */
+
+.nav-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: var(--oc-canvas);
+  z-index: 100;
+  flex-direction: column;
+  padding: var(--oc-gutter);
+  overflow-y: auto;
+}
+
+.nav-overlay.is-open {
+  display: flex;
+}
+
+.nav-overlay-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--oc-space-xl);
+}
+
+.nav-overlay-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.nav-overlay-title {
+  font-family: var(--font-mono-brand);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--oc-ink-strong);
+  text-decoration: none;
+}
+
+.nav-overlay-close {
+  background: none;
+  border: 1px solid var(--oc-rule);
+  color: var(--oc-ink-muted);
+  font-family: var(--font-mono-brand);
+  font-size: 16px;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: var(--oc-radius-sm);
+}
+
+.nav-overlay-close:hover {
+  color: var(--oc-ink-strong);
+  border-color: var(--oc-ink-subtle);
+}
+
+.nav-overlay-close:focus-visible {
+  outline: 2px solid var(--oc-focus);
+  outline-offset: 0;
+}
+
+.nav-overlay-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--oc-space-sm);
+}
+
+.nav-overlay-links li {
+  list-style: none;
+}
+
+.nav-overlay-links a {
+  font-family: var(--font-mono-brand);
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 36px;
+  color: var(--oc-ink-muted);
+  text-decoration: none;
+  display: block;
+  padding: var(--oc-space-sm) 0;
+}
+
+.nav-overlay-links a:hover,
+.nav-overlay-links a.active {
+  color: var(--oc-ink-strong);
+}
+
+.nav-overlay-links a:focus-visible {
+  outline: 2px solid var(--oc-focus);
+  outline-offset: 0;
+}
+
+/* -- Responsive ---------------------------------------------------------- */
+
+@media (max-width: 768px) {
+  .page-nav {
+    padding: 0 var(--oc-gutter-m);
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav-social {
+    display: none;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+}

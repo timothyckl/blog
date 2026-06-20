@@ -1,0 +1,47 @@
+/* ==========================================================================
+   Home hero — minimal clean
+   ========================================================================== */
+
+.home-hero {
+  overflow: visible;
+  padding: 0 0 3rem;
+  position: static;
+  border: none;
+  background: transparent;
+  background-size: auto;
+}
+
+.home-hero::before {
+  content: none;
+}
+
+/* -- Greeting ----------------------------------------------------------- */
+
+.home-hero__content h1 {
+  margin: 0 0 1.25rem;
+  letter-spacing: -0.02em;
+}
+
+/* -- Bio text ------------------------------------------------------------ */
+
+.home-hero__content p:not(:first-child) {
+  font-family: var(--font-mono-brand);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--oc-ink-muted);
+  margin: 0 0 0.75rem;
+}
+
+.home-hero__content p:last-child {
+  margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+  .home-hero {
+    padding: 0 0 2rem;
+  }
+
+  .home-hero__content h1 {
+    margin-bottom: 1rem;
+  }
+}

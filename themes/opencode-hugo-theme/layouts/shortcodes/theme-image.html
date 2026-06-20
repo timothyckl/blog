@@ -1,0 +1,11 @@
+<figure class="theme-illustration">
+  <img
+    class="theme-illustration__image"
+    src="{{ .Get "dark" | relURL }}"
+    data-light-src="{{ .Get "light" | relURL }}"
+    data-dark-src="{{ .Get "dark" | relURL }}"
+    alt="{{ .Get "alt" }}"
+    loading="lazy"
+    decoding="async"
+  >
+</figure>

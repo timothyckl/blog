@@ -1,0 +1,24 @@
+{{ define "main" }}
+  <header class="home-hero">
+    <div class="home-hero__content">
+      {{ .Content }}
+    </div>
+  </header>
+
+  {{ with .Site.Params.experience }}
+    <section class="home-experience" aria-labelledby="experience-title">
+      <h2 id="experience-title">Experience</h2>
+      <div class="experience-timeline">
+        {{ range . }}
+          <article class="experience-item">
+            <p class="experience-period">{{ .period }}</p>
+            <div class="experience-details">
+              <h3>{{ .role }} <span aria-hidden="true">·</span> <span class="experience-organisation">{{ .organisation }}</span></h3>
+              {{ with .description }}<p>{{ . }}</p>{{ end }}
+            </div>
+          </article>
+        {{ end }}
+      </div>
+    </section>
+  {{ end }}
+{{ end }}

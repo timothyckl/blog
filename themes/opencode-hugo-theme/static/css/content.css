@@ -99,6 +99,8 @@
   font-weight: 400;
   line-height: 1.6;
   color: var(--oc-code-fg);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 .content-body pre code {

@@ -1,9 +1,8 @@
 ---
-title: "tim's thoughts"
+title: "timothyckl"
 ---
 
-Hi, I’m Tim.
+Hi, I'm Tim.
+===
 
-I’m studying Applied Artificial Intelligence at the Singapore Institute of Technology, with interests in AI safety, alignment, and mechanistic interpretability.
-
-I also enjoy tinkering with developer tools, Neovim, local-first workflows, and small projects that help me learn. This blog is a place for notes, tutorials, experiments, and thoughts along the way.
+I'm an undergrad majoring in Applied Artificial Intelligence at SIT. I enjoy building software, learning about new topics and applying them to my work.

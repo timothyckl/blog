@@ -1,0 +1,21 @@
+{{ define "main" }}
+  <header class="content-header">
+    <h1>{{ .Title | markdownify }}</h1>
+    {{ .Content }}
+  </header>
+
+  {{ range .Pages }}
+    <article class="post">
+      <header class="post-header">
+        <h3><a href="{{ .Permalink }}">{{ .Title | markdownify }}</a></h3>
+        <p class="label-sm" style="color: var(--oc-ink-subtle);">
+          {{ if .Params.author }}{{ .Params.author }}&nbsp;&middot;&nbsp;{{ end }}
+          <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>
+        </p>
+      </header>
+      <section class="post-summary body-md" style="color: var(--oc-ink-muted);">
+        {{ .Summary }}
+      </section>
+    </article>
+  {{ end }}
+{{ end }}

@@ -1,0 +1,67 @@
+<!-- ==========================================================================
+     OpenCode Terminal Brutalist — Navigation
+     Based on opencode.ai DESIGN.md
+     ========================================================================== -->
+
+<header class="page-nav">
+  <nav>
+    <a href="{{ .Site.Home.Permalink }}" class="nav-logo">{{ .Site.Params.homeLabel | default "Home" }}</a>
+
+    <ul class="nav-links">
+      {{ $currentPage := . }}
+      {{ range .Site.Menus.main }}
+        <li>
+          <a class="nav-link{{ if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) (eq ($currentPage.Permalink) (.URL | absLangURL)) }} active{{ end }}"
+             href="{{ .URL | absLangURL }}"
+             title="{{ .Title }}">
+            {{ .Name }}
+          </a>
+        </li>
+      {{ end }}
+    </ul>
+
+    {{ if .Site.Params.socialLinks }}
+      <ul class="nav-social">
+        {{ range .Site.Params.socialLinks }}
+          <li>
+            <a href="{{ .url }}" rel="me" aria-label="{{ .title }}" title="{{ .title }}">
+              <i class="{{ .icon }}" aria-hidden="true"></i>
+            </a>
+          </li>
+        {{ end }}
+      </ul>
+    {{ end }}
+
+    <button class="theme-toggle" type="button" aria-label="Switch to light mode" title="Switch to light mode">
+      <span aria-hidden="true">☼</span>
+    </button>
+
+    <button class="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      Menu
+    </button>
+  </nav>
+</header>
+
+<!-- Mobile overlay -->
+<div class="nav-overlay" role="dialog" aria-modal="true" aria-label="Navigation menu">
+  <div class="nav-overlay-header">
+    <a href="{{ .Site.Home.Permalink }}" class="nav-overlay-title">{{ .Site.Params.homeLabel | default "Home" }}</a>
+    <div class="nav-overlay-actions">
+      <button class="theme-toggle" type="button" aria-label="Switch to light mode" title="Switch to light mode">
+        <span aria-hidden="true">☼</span>
+      </button>
+      <button class="nav-overlay-close" aria-label="Close menu">Close</button>
+    </div>
+  </div>
+  <ul class="nav-overlay-links">
+    {{ $currentPage := . }}
+    {{ range .Site.Menus.main }}
+      <li>
+        <a class="{{ if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) (eq ($currentPage.Permalink) (.URL | absLangURL)) }} active{{ end }}"
+           href="{{ .URL | absLangURL }}">
+          {{ .Name }}
+        </a>
+      </li>
+    {{ end }}
+  </ul>
+</div>

@@ -1,0 +1,11 @@
+{{ define "main" }}
+  <header class="content-header">
+    <h1>{{ .Title | markdownify }}</h1>
+  </header>
+  {{ .Content }}
+  <ul class="post-list">
+    {{ range .Pages }}
+      {{ .Render "li" }}
+    {{ end }}
+  </ul>
+{{ end }}

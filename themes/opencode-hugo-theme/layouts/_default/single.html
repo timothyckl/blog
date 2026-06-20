@@ -1,0 +1,11 @@
+{{ define "main" }}
+  <header class="content-header">
+    <h1>{{ .Title | markdownify }}</h1>
+    {{ with .Date }}
+      <time class="post-date" datetime="{{ .Format "2006-01-02" }}">{{ .Format "2 Jan 2006" }}</time>
+    {{ end }}
+  </header>
+  <article class="content-body">
+    {{ .Content }}
+  </article>
+{{ end }}

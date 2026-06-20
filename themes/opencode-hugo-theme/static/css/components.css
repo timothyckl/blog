@@ -1,0 +1,89 @@
+/* ==========================================================================
+   OpenCode Terminal Brutalist — Components
+   Buttons, callouts, badges, and reusable UI elements.
+   Based on opencode.ai DESIGN.md
+   ========================================================================== */
+
+/* -- Primary button ------------------------------------------------------ */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--oc-button-light);
+  color: var(--oc-button-text);
+  border: 1px solid var(--oc-button-light);
+  border-radius: var(--oc-radius-sm);
+  padding: 10px 20px;
+  font-family: var(--font-mono-brand);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: opacity 0.15s ease;
+}
+
+.btn-primary:hover {
+  opacity: 0.85;
+}
+
+.btn-primary:focus-visible {
+  outline: 2px solid var(--oc-focus);
+  outline-offset: 0;
+}
+
+/* -- Secondary button ---------------------------------------------------- */
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: transparent;
+  color: var(--oc-ink-muted);
+  border: 1px solid var(--oc-rule);
+  border-radius: var(--oc-radius-sm);
+  padding: 10px 16px;
+  font-family: var(--font-mono-brand);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-secondary:hover {
+  color: var(--oc-ink-strong);
+  border-color: var(--oc-ink-subtle);
+}
+
+.btn-secondary:focus-visible {
+  outline: 2px solid var(--oc-focus);
+  outline-offset: 0;
+}
+
+/* -- Tip callout (deep purple, for editorial notes) ---------------------- */
+
+.callout-tip {
+  background: var(--oc-chart-purple);
+  color: var(--oc-ink-strong);
+  border: none;
+  border-radius: var(--oc-radius-sm);
+  padding: var(--oc-space-md);
+  margin: var(--oc-space-md) 0;
+  font-family: var(--font-mono-docs);
+  font-size: 14px;
+  line-height: 21px;
+}
+
+.callout-tip strong {
+  color: var(--oc-ink-strong);
+}
+
+/* -- Global focus ring --------------------------------------------------- */
+
+:focus-visible {
+  outline: 2px solid var(--oc-focus);
+  outline-offset: 0;
+}

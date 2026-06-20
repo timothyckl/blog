@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="{{- site.Language.Lang -}}">
+<head>
+  {{- partial "head.html" . -}}
+</head>
+<body>
+  <div class="page-shell">
+    {{- partial "nav.html" . -}}
+    <div class="page-gutter">
+      <main class="page-main">
+        {{- block "main" . }}{{- end }}
+      </main>
+      {{- partial "footer.html" . -}}
+    </div>
+  </div>
+</body>
+</html>

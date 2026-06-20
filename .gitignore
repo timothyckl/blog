@@ -143,6 +143,9 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
+# Working/design files for illustrations
+hyperframes/
+
 # Hugo
 **/public/
 **/.hugo_build.lock

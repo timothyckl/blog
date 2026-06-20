@@ -1,0 +1,53 @@
+name = "opencode-hugo-theme"
+license = "MIT"
+licenselink = "https://github.com/timothyckl/opencode-hugo-theme/blob/main/LICENSE"
+description = "Terminal Brutalist Hugo theme based on the opencode.ai design system. Persistent light and dark palettes, monospace-first typography, rule-based separation, and strict border aesthetics."
+
+homepage = "https://github.com/timothyckl/opencode-hugo-theme"
+demosite = ""
+
+tags = ["dark", "light", "monospace", "terminal", "brutalist", "minimal", "responsive"]
+features = [
+  "light and dark modes",
+  "monospace typography",
+  "responsive layout",
+  "syntax highlighting",
+  "table of contents",
+  "RSS",
+]
+
+[author]
+  name = "timothyckl"
+  homepage = "https://github.com/timothyckl"
+
+# ---- Theme parameters ----
+# These are set in the site's hugo.toml under [params.theme]
+#
+# [params.theme]
+#   # Optional. Override the default font stack. Berkeley Mono requires a license.
+#   # Default: "IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace"
+#   fontMono = "IBM Plex Mono, ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace"
+#
+# [params]
+#   # Site-level params the theme reads:
+#   noindex = false          # Add noindex meta tag
+#   mainSections = ["posts"] # Hugo main sections for pagination / RSS
+#   description = "A short description used in page metadata."
+#   homeLabel = "Home"
+#
+# [[params.experience]]
+#   period = "2025 – Present"
+#   role = "Job title"
+#   organisation = "Organisation"
+#   description = "Optional role description."
+#
+# [[params.socialLinks]]
+#   icon = "fa-brands fa-github"
+#   title = "GitHub"
+#   url = "https://github.com/username"
+#
+# [menu]
+#   [[menu.main]]
+#     name = "Posts"
+#     url = "/posts/"
+#     weight = 1

@@ -1,31 +1,35 @@
-# tim's thoughts
+# timothyckl
 
-Developer blog built with [Hugo](https://gohugo.io/) and [risotto](https://github.com/joeroe/risotto) theme.
+Personal blog built with [Hugo](https://gohugo.io/) and the OpenCode theme.
 
-## Quick Start
+## Run locally
+
+Install Hugo, then:
 
 ```bash
-# clone with theme submodules
-git clone --recurse-submodules https://github.com/timothyckl/blog
+git clone git@github.com:timothyckl/blog.git
 cd blog
-
-# run dev server
 hugo server -D
-# visit http://localhost:1313
 ```
 
-## File Structure 
+The site will be available at <http://localhost:1313>.
+
+## Write a post
 
 ```bash
+hugo new content posts/my-first-post.md
+```
+
+Posts live in `content/posts/`. New posts are drafts by default; set
+`draft = false` in the front matter when they are ready to publish.
+
+## Project structure
+
+```text
 .
-├── content/        # posts & pages
-├── themes/         # theme submodules
-├── hugo.toml       # site config
-└── README.md
-```
-
-## Writing
-
-```bash
-hugo new posts/my-first-post.md
+├── archetypes/              # content templates
+├── content/                 # posts and pages
+├── static/                  # images and custom styles
+├── themes/opencode-hugo-theme/
+└── hugo.toml                # site configuration
 ```

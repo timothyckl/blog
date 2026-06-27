@@ -19,7 +19,7 @@ By the end of this post, we will have a data pipeline that produces batches of `
 
 ## Why FineWeb-Edu?
 
-[FineWeb-Edu](https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu) is a dataset of educational-quality web pages filtered from CommonCrawl. It contains ~1.3 trillion tokens of text that scored highly on an educational content classifier trained on LLama-3-70B-Instruct annotations.
+[FineWeb-Edu](https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu) is a dataset of educational-quality web pages filtered from CommonCrawl. It contains ~1.3 trillion tokens of text that scored highly on an educational content classifier trained on Llama-3-70B-Instruct annotations.
 
 The dataset is a good fit for a baseline language model because:
 
@@ -93,7 +93,7 @@ The raw text is not yet in a format our model can use. Next, we turn it into tok
 
 A language model does not read characters or words directly. It reads token IDs, integers that represent subword units. The mapping from text to token IDs is handled by a **tokeniser**.
 
-GPT-2 uses byte-pair encoding (BPE), trained on a large text corpus. BPE keeps common text compact while representing less common forms with several token IDs. The rows below show that change directly: `language` needs one ID, while `understandable` and `tokenisation` need several.
+GPT-2 uses [byte-pair encoding (BPE)](https://en.wikipedia.org/wiki/Byte_pair_encoding), trained on a large text corpus. BPE keeps common text compact while representing less common forms with several token IDs. The rows below show that change directly: `language` needs one ID, while `understandable` and `tokenisation` need several.
 
 {{< theme-image light="/images/tokenising-fineweb-edu/bpe-tokenisation-quoted.gif?v=final-hold-1500" dark="/images/tokenising-fineweb-edu/bpe-tokenisation-quoted-dark.gif?v=final-hold-1500" alt="Three quoted raw-text examples passing through GPT-2 BPE and becoming one or more token IDs" caption="Quotation marks distinguish the raw strings from the token IDs produced by the tokeniser." >}}
 
@@ -108,7 +108,7 @@ tokenizer = GPT2TokenizerFast.from_pretrained("gpt2")
 tokenizer.pad_token = tokenizer.eos_token
 ```
 
-The tokeniser has a vocabulary of 50,257 token IDs, ranging from 0 to 50256. Setting `pad_token = eos_token` configures EOS as the padding token, although this pipeline's complete fixed-length blocks do not require padding.
+The tokeniser has a vocabulary of 50,257 token IDs, ranging from 0 to 50256. Setting `pad_token = eos_token` configures EOS as the padding token, although this pipeline's complete fixed-length blocks do not require padding. If padding did happen, the model would learn to emit EOS mid-sequence, a confusing training signal. In practice no padding occurs, so the defensive assignment costs nothing.
 
 To tokenise a single string:
 
@@ -138,7 +138,7 @@ Two important arguments:
 - `add_special_tokens=False` makes the intended behaviour explicit: tokenisation should return only the text's BPE tokens. GPT-2 does not add a start-of-text token by default, but stating this option avoids relying on that default.
 - `truncation=False`, a sample might be longer than the model's maximum context. We will handle that during grouping, not during tokenisation.
 
-## End-of-text tokens
+## End-of-sequence tokens
 
 FineWeb-Edu contains independent documents, articles pulled from different web pages. They have no relationship to each other. If we concatenate them naïvely, the model might learn spurious connections across document boundaries. It might try to predict the start of a biology article from the end of a history article.
 
@@ -162,12 +162,12 @@ def tokenize_batch(batch):
     return tokenized
 ```
 
-The EOS token ID is 50256. When the model encounters it during training, it learns to treat it as a document boundary. This serves a dual purpose:
+The end-of-sequence (EOS) token ID is 50256. When the model encounters it during training, it learns to treat it as a document boundary. This serves a dual purpose:
 
 1. **Training.** The model learns that EOS is a valid next-token prediction, marking the boundary between otherwise unrelated documents.
-2. **Generation.** A trained model can emit the EOS token, allowing generation code to treat it as a stopping signal.
+2. **Inference.** A trained model can emit the EOS token, allowing inference code to treat it as a stopping signal.
 
-We also suppress `return_attention_mask` because our causal language model does not need explicit attention masks, the causal mask alone prevents future-looking.
+We also suppress `return_attention_mask` because this dataset contains complete fixed-length blocks. The causal mask used inside the model is what prevents tokens from looking ahead, but that belongs in the modelling post rather than the data pipeline.
 
 ## Batched tokenisation
 
@@ -225,7 +225,7 @@ Transformers can process varying sequence lengths up to their configured context
 
 ### The shift by one
 
-Language models are trained for **next-token prediction**. In the diagram, each input position points to the token directly below it: the labels are the same sequence shifted one place to the left.
+Autoregressive language models are trained for **next-token prediction**: they generate one token at a time, using the previous tokens as context. In the diagram, each input position points to the token directly below it: the labels are the same sequence shifted one place to the left.
 
 {{< theme-image light="/images/tokenising-fineweb-edu/shift-by-one.gif?v=final-hold-1500" dark="/images/tokenising-fineweb-edu/shift-by-one-dark.gif?v=final-hold-1500" alt="Input tokens aligned with labels shifted one position to the left" caption="At position i, the model receives token xᵢ and learns to predict xᵢ₊₁." >}}
 
@@ -235,7 +235,7 @@ For a block of length `block_size`, we actually need `block_size + 1` tokens. `b
 
 The transformation is easier to see before looking at its implementation. Start with two tokenised samples in the same mapping batch. Concatenate them without removing EOS, then take the first `block_size + 1` tokens as one complete block. Anything too short to fill another block in that mapping batch is discarded.
 
-{{< theme-image light="/images/tokenising-fineweb-edu/concat-slicing.gif?v=mapping-batch" dark="/images/tokenising-fineweb-edu/concat-slicing-dark.gif?v=mapping-batch" alt="Two tokenised samples in one mapping batch concatenated into a stream and sliced into a complete block plus a discarded remainder" caption="Within each mapping batch, four stream tokens form one example when block_size = 3; the three-token remainder is discarded." >}}
+{{< theme-image light="/images/tokenising-fineweb-edu/concat-slicing.gif?v=mapping-batch-discard" dark="/images/tokenising-fineweb-edu/concat-slicing-dark.gif?v=mapping-batch-discard" alt="Two tokenised samples in one mapping batch concatenated into a stream and sliced into a complete block plus a visibly discarded remainder" caption="Within each mapping batch, four stream tokens form one example when block_size = 3; the three-token remainder is discarded." >}}
 
 Here is the same operation in code:
 
@@ -270,14 +270,16 @@ def group_texts(examples, block_size):
 For the illustrated example, `block_size = 3`, so `block_length = 4`. The full block becomes:
 
 ```text
-Block: [10, 20, 30, 50256]
-  Input: [10, 20, 30]
-  Label: [20, 30, 50256]
+Block: [10, 20, 30, 50256]   ← 4 tokens (block_size + 1)
+  Input: [10, 20, 30]         ← 3 tokens (block_size)
+  Label: [20, 30, 50256]      ← 3 tokens (block_size)
 ```
+
+So every block yields `block_size` inputs and `block_size` labels. The block is one token longer than either, and the labels are offset by a single token.
 
 The model sees `[10, 20, 30]` and is asked to predict `20, 30, 50256` at positions 0, 1, and 2 respectively.
 
-Notice how the block crosses the document boundary at the EOS token. This is fine, the EOS teaches the model that sequences can end. The remaining tokens `[40, 50, 50256]` are discarded because they do not fill a complete block. Because grouping runs through `map(batched=True)`, this can happen once per mapping batch rather than only once per dataset split. With sufficiently large mapping batches, the loss remains small.
+Since documents are concatenated, a single block can span across document boundaries. The EOS token that separates them ends up in the training data, which is intentional: the model must learn that sequences can end. When the concatenated stream does not divide evenly, a few tokens are discarded at the tail. With large enough mapping batches, this loss is negligible.
 
 To confirm the grouping is correct, we inspect a block:
 
@@ -292,7 +294,7 @@ assert torch.equal(block["input_ids"][1:], block["labels"][:-1]), "Shift mismatc
 
 ### block_size is a hyperparameter
 
-The choice of `block_size` determines how much context the model can use. GPT-2 used 1024. For our small baseline, we will use something smaller, 128 or 256, to keep training fast and memory low while still giving the model enough context to form basic sentences.
+The choice of `block_size` determines how much context the model can use. GPT-2 used a block size of 1024 tokens. For our small baseline, we will use something smaller, 128 or 256, to keep training fast and memory low while still giving the model enough context to form basic sentences.
 
 We store `block_size` in our config:
 
@@ -300,7 +302,7 @@ We store `block_size` in our config:
 @dataclass
 class Config:
     block_size: int = 128
-    # ...
+    # more to be added later!
 ```
 
 ## Train/validation split
@@ -381,6 +383,7 @@ We solve this by caching the grouped datasets to disk:
 
 ```python {filename="data.py"}
 import os
+from datasets import load_from_disk
 
 train_path = f"./data/fineweb_edu_tokenized_train_block_{config.block_size}"
 val_path = f"./data/fineweb_edu_tokenized_val_block_{config.block_size}"
@@ -392,9 +395,32 @@ if os.path.exists(train_path) and os.path.exists(val_path):
 else:
     # Cache miss, process from scratch and save
     os.makedirs("./data", exist_ok=True)
-    # ... (tokenise, group, set_format) ...
-    train_grouped.save_to_disk(train_path)
-    val_grouped.save_to_disk(val_path)
+
+    train_tokenized = train_ds.map(
+        tokenize_batch,
+        batched=True,
+        remove_columns=["text"],
+    )
+    val_tokenized = val_ds.map(
+        tokenize_batch,
+        batched=True,
+        remove_columns=["text"],
+    )
+
+    train_dataset = train_tokenized.map(
+        lambda examples: group_texts(examples, block_size=config.block_size),
+        batched=True,
+    )
+    val_dataset = val_tokenized.map(
+        lambda examples: group_texts(examples, block_size=config.block_size),
+        batched=True,
+    )
+
+    train_dataset.save_to_disk(train_path)
+    val_dataset.save_to_disk(val_path)
+
+train_dataset.set_format(type="torch", columns=["input_ids", "labels"])
+val_dataset.set_format(type="torch", columns=["input_ids", "labels"])
 ```
 
 The directory name encodes the dataset and the `block_size`. If we later want to experiment with a longer context length, say `block_size=256`, the code generates a new cache at `fineweb_edu_tokenized_train_block_256` without touching the existing one. Other preprocessing changes do not alter the path, so their old caches must be removed or versioned manually.

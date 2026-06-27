@@ -8,4 +8,7 @@
     loading="lazy"
     decoding="async"
   >
+  {{ with .Get "caption" }}
+    <figcaption class="theme-illustration__caption">{{ . }}</figcaption>
+  {{ end }}
 </figure>

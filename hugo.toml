@@ -29,6 +29,9 @@ copyright = "© timothyckl. All rights reserved."
 [params.theme]
   palette = "gruvbox-dark"
 
+[markup.goldmark.renderer]
+  unsafe = true
+
 [markup.highlight]
   style = "github-dark"
 

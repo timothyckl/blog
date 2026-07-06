@@ -9,7 +9,7 @@ In this series, I'll build a small GPT-2-style language model from scratch, trai
 
 The aim is to understand the full language modelling pipeline from end-to-end: data, tokenisation, model architecture, training, generation , evaluation, inspection.
 
-## Who show read this 
+## Who should read this 
 
 This series is for developers with some programming and machine learning experience who want to understand decoder-only Transformers by building, training, modifying, and inspecting a small GPT-2- style language model.
 
